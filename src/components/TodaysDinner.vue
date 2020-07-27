@@ -1,6 +1,6 @@
 <template>
   <div class="dinner">
-    <img alt="Vue logo" src="../assets/gohan.png">
+    <img alt="Vue logo" :src="image_path">
     <h1>{{ message }}</h1>
     <button v-on:click="selectMenu" type="button" class="btn btn-primary">
       メニューを選ぶ！
@@ -17,17 +17,24 @@ export default {
   data() {
     return {
       message: "今日の晩御飯何にする？",
+      image_path: require('../assets/gohan.png'),
       menus: [
         "カレー",
         "肉じゃが",
         "たこ焼き"
       ],
+      images: [
+        "curryrice.png",
+        "nikujaga.png",
+        "takoyaki.png"
+      ]
     }
   }, 
   methods: {
     selectMenu: function() {
       const idx = Math.floor(Math.random() * this.menus.length);
       this.message="今日のメニューは" + this.menus[idx]
+      this.image_path = require('../assets/' + this.images[idx])
     }
   }
 }
